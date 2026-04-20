@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=build /app/backend/package*.json ./backend/
 COPY --from=build /app/backend/node_modules ./backend/node_modules
 COPY --from=build /app/backend/dist ./backend/dist
-COPY storage ./storage
+COPY backend/storage ./storage
 WORKDIR /app/backend
 EXPOSE 4000
 CMD ["node", "dist/src/server.js"]
