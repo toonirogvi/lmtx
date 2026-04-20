@@ -1,0 +1,42 @@
+{
+  "name": "lumentix-internflow-backend",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/server.js",
+  "overrides": {
+    "@tootallnate/once": "^3.0.1"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/server.js",
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx src/seed.ts"
+  },
+  "dependencies": {
+    "bwip-js": "^4.5.1",
+    "cors": "^2.8.5",
+    "csv-parse": "^5.5.6",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "firebase-admin": "^13.8.0",
+    "helmet": "^8.0.0",
+    "lumentix-complete": "file:..",
+    "multer": "^2.0.2",
+    "nodemailer": "^8.0.5",
+    "puppeteer": "^24.15.0",
+    "qrcode": "^1.5.4",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.10.2",
+    "@types/nodemailer": "^6.4.17",
+    "@types/qrcode": "^1.5.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
