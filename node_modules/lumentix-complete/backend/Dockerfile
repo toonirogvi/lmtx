@@ -8,13 +8,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 FROM base AS deps
 COPY backend/package*.json ./backend/
-WORKDIR /app/backend
+WORKDIR /app
 RUN npm ci
 
 FROM deps AS build
-COPY backend ./backend
+COPY . .
 COPY scripts ./scripts
-WORKDIR /app/backend
+WORKDIR /app
 RUN npm run build
 
 FROM base AS runner
@@ -24,6 +24,6 @@ COPY --from=build /app/backend/package*.json ./backend/
 COPY --from=build /app/backend/node_modules ./backend/node_modules
 COPY --from=build /app/backend/dist ./backend/dist
 COPY storage ./storage
-WORKDIR /app/backend
+WORKDIR /app
 EXPOSE 4000
 CMD ["node", "dist/src/server.js"]
