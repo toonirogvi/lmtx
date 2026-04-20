@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 FROM base AS deps
-COPY backend/package*.json ./backend/
+COPY package*.json ./
 WORKDIR /app
 RUN npm ci
 
@@ -20,9 +20,9 @@ RUN npm run build
 FROM base AS runner
 ENV NODE_ENV=production
 WORKDIR /app
-COPY --from=build /app/backend/package*.json ./backend/
-COPY --from=build /app/backend/node_modules ./backend/node_modules
-COPY --from=build /app/backend/dist ./backend/dist
+COPY --from=build package*.json ./
+COPY --from=build /node_modules ./node_modules
+COPY --from=build /dist ./dist
 COPY storage ./storage
 WORKDIR /app
 EXPOSE 4000
